@@ -1,4 +1,4 @@
-function RecipeCard({ recipe }) {
+export function RecipeCard({ recipe }) {
   return (
     <li>
       <h2>{recipe.label}</h2>
@@ -15,5 +15,3 @@ function RecipeCard({ recipe }) {
     </li>
   );
 }
-
-export default RecipeCard;
