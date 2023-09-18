@@ -1,6 +1,6 @@
 import React from "react";
 import { data } from "../utils/data";
-import RecipeCard from "../components/RecipeCard";
+import { RecipeCard } from "../components/RecipeCard";
 
 function RecipeListPage() {
   return (
