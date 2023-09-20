@@ -27,7 +27,7 @@ export function RecipeListPage() {
   return (
     <div>
       <h1>Recipe List</h1>
-      <Center bgColor={"blackAlpha.300"} flexDir="column">
+      <Center bgColor={"blackAlpha.300"} flexDirection="column" gap={8}>
         <Heading>Your Recipe App</Heading>
 
         <SearchBar onSearch={handleSearch} />
