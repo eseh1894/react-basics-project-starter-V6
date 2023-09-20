@@ -1,3 +1,4 @@
+import { Center, Heading } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
@@ -26,13 +27,16 @@ export function RecipeListPage() {
   return (
     <div>
       <h1>Recipe List</h1>
+      <Center bgColor={"blackAlpha.300"} flexDir="column">
+        <Heading>Your Recipe App</Heading>
 
-      <SearchBar onSearch={handleSearch} />
-      <ul>
-        {data.hits.map((hit, index) => (
-          <RecipeCard key={index} recipe={hit.recipe} />
-        ))}
-      </ul>
+        <SearchBar onSearch={handleSearch} />
+        <ul>
+          {data.hits.map((hit, index) => (
+            <RecipeCard key={index} recipe={hit.recipe} />
+          ))}
+        </ul>
+      </Center>
     </div>
   );
 }
