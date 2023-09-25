@@ -30,7 +30,7 @@ export function RecipeListPage() {
       <Center bgColor={"blackAlpha.300"} flexDirection="column" gap={8}>
         <Heading>Your Recipe App</Heading>
 
-        {/* <SearchBar onSearch={handleSearch} /> */}
+        <SearchBar onSearch={handleSearch} />
         <SimpleGrid columns={4} spacing={4}>
           {data.hits.map((hit, index) => (
             <RecipeCard key={index} recipe={hit.recipe} />
