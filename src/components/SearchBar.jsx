@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { data } from "../utils/data";
+import { TextInput } from "./ui/TextInput";
 
-export const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+export const SearchBar = ({ clickFn }) => {
+  const [searchField, setSearchField] = useState("");
 
-  const handleSearch = () => {
-    onSearch(searchTerm);
+  const matchedRecipes = data.hit.filter((recipe) => {
+    return recipe.label.toLowerCase().includes(searchField.toLocaleLowerCase());
+  });
+  const handleChange = (event) => {
+    setSearchField(event.target.value);
   };
+
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+    <>
+      <label>Search Recipes</label>
+      <TextInput changeFn={handleChange} />
+    </>
   );
 };

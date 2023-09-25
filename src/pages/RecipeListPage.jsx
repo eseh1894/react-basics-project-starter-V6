@@ -1,4 +1,4 @@
-import { Center, Heading } from "@chakra-ui/react";
+import { Center, Heading, SimpleGrid } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
@@ -8,7 +8,7 @@ export function RecipeListPage() {
   const [filteredRecipes, setFilteredRecipes] = useState(data.hits);
 
   const handleSearch = (searchTerm) => {
-    const filtered = data.hits.filter((hit) => {
+    const filteredRecipes = data.hits.filter((hit) => {
       const recipe = hit.recipe;
       const { label, healthLabels } = recipe;
 
@@ -30,12 +30,12 @@ export function RecipeListPage() {
       <Center bgColor={"blackAlpha.300"} flexDirection="column" gap={8}>
         <Heading>Your Recipe App</Heading>
 
-        <SearchBar onSearch={handleSearch} />
-        <ul>
+        {/* <SearchBar onSearch={handleSearch} /> */}
+        <SimpleGrid columns={4} spacing={4}>
           {data.hits.map((hit, index) => (
             <RecipeCard key={index} recipe={hit.recipe} />
           ))}
-        </ul>
+        </SimpleGrid>
       </Center>
     </div>
   );

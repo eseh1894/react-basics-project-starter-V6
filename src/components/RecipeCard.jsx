@@ -10,10 +10,10 @@ export function RecipeCard({ recipe }) {
         <Flex flexWrap="wrap" justify="space-between">
           <Box
             spacing={10}
-            maxW="sm"
+            maxW="xs"
             marginBottom="20px"
             borderWidth="1px"
-            borderRadius="lg"
+            borderRadius="xl"
             overflow="hidden"
             boxShadow="md"
             cursor="pointer"
