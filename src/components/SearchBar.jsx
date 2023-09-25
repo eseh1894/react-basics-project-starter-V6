@@ -10,8 +10,8 @@ export const SearchBar = ({ onSearch }) => {
       .toLowerCase()
       .includes(searchField.toLocaleLowerCase());
   });
-  const handleChange = (event) => {
-    setSearchField(event.target.value);
+  const handleChange = (handleSearch) => {
+    setSearchField(handleSearch.target.value);
   };
 
   return (
