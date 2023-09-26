@@ -19,7 +19,7 @@ export function RecipeListPage() {
         )
       );
     });
-    setFilteredRecipes(filtered);
+    setFilteredRecipes(filteredRecipes);
   };
   const handleBackClick = () => {
     setSelectedRecipe(null);

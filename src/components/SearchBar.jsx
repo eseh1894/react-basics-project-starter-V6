@@ -1,17 +1,13 @@
 import { useState } from "react";
-import { data } from "../utils/data";
 import { TextInput } from "./ui/TextInput";
 
 export const SearchBar = ({ onSearch }) => {
   const [searchField, setSearchField] = useState("");
 
-  const matchedRecipes = data.hits.filter((recipe) => {
-    return recipe.recipe.label
-      .toLowerCase()
-      .includes(searchField.toLocaleLowerCase());
-  });
-  const handleChange = (handleSearch) => {
-    setSearchField(handleSearch.target.value);
+  const handleChange = (event) => {
+    const searchTerm = event.target.value;
+    setSearchField(searchTerm);
+    onSearch(searchTerm);
   };
 
   return (
