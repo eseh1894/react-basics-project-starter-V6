@@ -7,7 +7,7 @@ import { RecipePage } from "./RecipePage";
 
 export function RecipeListPage() {
   const [filteredRecipes, setFilteredRecipes] = useState(data.hits);
-  const [selectedRecipe, setSelectedRecipe] = useState(data.hits);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const handleSearch = (searchTerm) => {
     const filteredRecipes = data.hits.filter((hit) => {
@@ -42,10 +42,12 @@ export function RecipeListPage() {
           ))}
         </SimpleGrid>
       </Center>
-      <RecipePage
-        recipe={selectedRecipe}
-        onBack={() => setSelectedRecipe(null)}
-      />
+      {selectedRecipe && (
+        <RecipePage
+          recipe={selectedRecipe}
+          onBack={() => setSelectedRecipe({})}
+        />
+      )}
     </div>
   );
 }
