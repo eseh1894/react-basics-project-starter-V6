@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
 import { SearchBar } from "../components/SearchBar";
+import { RecipePage } from "./RecipePage";
 
 export function RecipeListPage() {
   const [filteredRecipes, setFilteredRecipes] = useState(data.hits);
+  const [selectedRecipe, setSelectedRecipe] = useState(data.hits);
 
   const handleSearch = (searchTerm) => {
     const filteredRecipes = data.hits.filter((hit) => {
@@ -21,22 +23,29 @@ export function RecipeListPage() {
     });
     setFilteredRecipes(filteredRecipes);
   };
-  const handleBackClick = () => {
-    setSelectedRecipe(null);
+  const handleRecipeClick = (recipe) => {
+    setSelectedRecipe(recipe);
   };
   return (
     <div>
-      <h1>Recipe List</h1>
       <Center bgColor={"blackAlpha.300"} flexDirection="column" gap={8}>
         <Heading>Your Recipe App</Heading>
 
         <SearchBar onSearch={handleSearch} />
         <SimpleGrid columns={4} spacing={4}>
-          {data.hits.map((hit, index) => (
-            <RecipeCard key={index} recipe={hit.recipe} />
+          {filteredRecipes.map((hit, index) => (
+            <RecipeCard
+              key={index}
+              recipe={hit.recipe}
+              onClick={() => handleRecipeClick(hit.recipe)}
+            />
           ))}
         </SimpleGrid>
       </Center>
+      <RecipePage
+        recipe={selectedRecipe}
+        onBack={() => setSelectedRecipe(null)}
+      />
     </div>
   );
 }
