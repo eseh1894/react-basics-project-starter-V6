@@ -23,31 +23,31 @@ export function RecipeListPage() {
     });
     setFilteredRecipes(filteredRecipes);
   };
-  const handleRecipeClick = (recipe) => {
-    setSelectedRecipe(recipe);
-  };
+
   return (
     <div>
       <Center bgColor={"blackAlpha.300"} flexDirection="column" gap={8}>
         <Heading>Your Recipe App</Heading>
 
         <SearchBar onSearch={handleSearch} />
-        <SimpleGrid columns={4} spacing={4}>
-          {filteredRecipes.map((hit, index) => (
-            <RecipeCard
-              key={index}
-              recipe={hit.recipe}
-              onClick={() => handleRecipeClick(hit.recipe)}
-            />
-          ))}
-        </SimpleGrid>
+
+        {selectedRecipe ? (
+          <RecipePage
+            recipe={selectedRecipe}
+            onBack={() => setSelectedRecipe(null)}
+          />
+        ) : (
+          <SimpleGrid columns={4} spacing={4}>
+            {filteredRecipes.map((hit, index) => (
+              <RecipeCard
+                key={index}
+                recipe={hit.recipe}
+                onClick={() => setSelectedRecipe(hit.recipe)}
+              />
+            ))}
+          </SimpleGrid>
+        )}
       </Center>
-      {selectedRecipe && (
-        <RecipePage
-          recipe={selectedRecipe}
-          onBack={() => setSelectedRecipe({})}
-        />
-      )}
     </div>
   );
 }
