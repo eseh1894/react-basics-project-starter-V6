@@ -29,7 +29,7 @@ export function RecipeListPage() {
       <Center bgColor={"blackAlpha.300"} flexDirection="column" gap={8}>
         <Heading>Your Recipe App</Heading>
 
-        <SearchBar onSearch={handleSearch} />
+        {selectedRecipe === null && <SearchBar onSearch={handleSearch} />}
 
         {selectedRecipe ? (
           <RecipePage

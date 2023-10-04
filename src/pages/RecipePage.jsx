@@ -1,14 +1,63 @@
 import React from "react";
+import {
+  IconButton,
+  Box,
+  Flex,
+  Text,
+  Spacer,
+  Image,
+  VStack,
+} from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 export function RecipePage({ recipe, onBack }) {
   return (
-    <div>
-      <button onClick={onBack}>Back to Recipe List</button>
-      <h1>{recipe.label}</h1>
-      <img src={recipe.image} alt={recipe.label} />
-      <p>Yield: {recipe.yield}</p>
-      <p>Diet Labels: {recipe.dietLabels.join(", ")}</p>
-      <p>Health Labels: {recipe.healthLabels.join(", ")}</p>
+    <Box p="4" position="relative">
+      <Flex align="center" mb="4">
+        <IconButton
+          aria-label="Back to Recipe List"
+          icon={<ArrowBackIcon />}
+          onClick={onBack}
+          variant="outline"
+          colorScheme="purple"
+        />
+        <Spacer />
+        <Text fontSize="lg" fontWeight="bold">
+          {recipe.label}
+        </Text>
+        <Spacer />
+      </Flex>
+      <Flex>
+        <Box flex="1">
+          <Image
+            src={recipe.image}
+            alt={recipe.label}
+            maxH="400px"
+            maxW="100%"
+          />
+          <Text mt="4">Yield: {recipe.yield}</Text>
+          <Text>Meal Type: {recipe.mealType}</Text>
+        </Box>
+        <VStack flex="1" align="start">
+          <Text>Diet Labels: {recipe.dietLabels.join(", ")}</Text>
+          <Text mt="4">Health Labels:</Text>
+          <Box className="health-labels">
+            {recipe.healthLabels.map((label, index) => (
+              <Box
+                key={index}
+                bg="purple.500"
+                color="white"
+                borderRadius="md"
+                display="inline-block"
+                padding="5px 10px"
+                marginRight="5px"
+              >
+                {label}
+              </Box>
+            ))}
+          </Box>
+        </VStack>
+      </Flex>
       <p>Cautions: {recipe.cautions.join(", ")}</p>
       <h2>Ingredients:</h2>
       <ul>
@@ -26,6 +75,6 @@ export function RecipePage({ recipe, onBack }) {
         <li>Cholesterol (mg): {recipe.totalNutrients.CHOLE?.quantity}</li>
         <li>Sodium (mg): {recipe.totalNutrients.NA?.quantity}</li>
       </ul>
-    </div>
+    </Box>
   );
 }
