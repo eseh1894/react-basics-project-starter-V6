@@ -10,12 +10,12 @@ export const App = () => {
       {selectedRecipe ? (
         <RecipePage
           recipe={selectedRecipe}
-          onBack={() => setSelectedRecipe(null)} // Handle back button click
+          onBack={() => setSelectedRecipe(null)} 
         />
       ) : (
         <RecipeListPage
           selectedRecipe={selectedRecipe}
-          onRecipeSelect={(recipe) => setSelectedRecipe(recipe)} // Handle recipe selection
+          onRecipeSelect={(recipe) => setSelectedRecipe(recipe)} 
         />
       )}
     </div>
